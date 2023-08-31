@@ -126,7 +126,7 @@ async def run(file, data, channels, sample_width, sample_rate):
                         latencies.append(cursor_latency)
 
                         # Debug
-                        # print(f'Measuring... Audio cursor = {audio_cursor:.3f}, Transcript cursor = {transcript_cursor:.3f}, Cursor Latency: {cursor_latency:.3f}')
+                        print(f'Measuring... Audio cursor = {audio_cursor:.4f}, Transcript cursor = {transcript_cursor:.4f}, Cursor Latency: {cursor_latency:.4f}')
 
             except Exception as e:
                 print(f'Error while recieving: {e}')
@@ -167,11 +167,10 @@ def main():
                     assert sample_width == 2, 'WAV data must be 16-bit.'
                     data = fh.readframes(num_samples)
                 # Debug
-                # print(f'Channels = {channels}, Sample Rate = {sample_rate} Hz, Sample width = {sample_width} bytes, Size = {len(data)} bytes', file=sys.stderr)
+                print(f'Channels = {channels}, Sample Rate = {sample_rate} Hz, Sample width = {sample_width} bytes, Size = {len(data)} bytes', file=sys.stderr)
 
                 # Run the test.
                 asyncio.get_event_loop().run_until_complete(run(file, data, channels, sample_width, sample_rate))
 ###############################################################################
 if __name__ == '__main__':
     sys.exit(main() or 0)
-ubuntu@ip-172-31-7-44:~/s
